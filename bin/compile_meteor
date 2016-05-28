@@ -48,8 +48,10 @@ fetch_meteor() {
 
 build() {
   (
-    head "Building Meteor App Bundle"
     cd $APP_SOURCE
+    head "Installing Build's NPM Dependencies"
+    npm install | indent
+    head "Building Meteor App Bundle"
     # can't build with these platforms enabled, it looks like
     set +e  # these next few are allowed to exit nonzero
     grep -Fxq ios .meteor/platforms
