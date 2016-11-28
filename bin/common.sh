@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 error() {
   echo " !     $*" >&2
   exit 1
@@ -42,7 +40,6 @@ file_contents() {
 }
 
 package_json() {
-  echo "package_json: cat $build_dir/package.json | $bp_dir/vendor/jq -r $1"
   if test -f $build_dir/package.json; then
     local result="$(cat $build_dir/package.json | $bp_dir/vendor/jq -r $1)"
     if [ "$result" == "null" ]; then echo ""

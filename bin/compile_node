@@ -8,17 +8,15 @@ set -o pipefail   # don't ignore exit codes when piping output
 # set -x          # enable debugging
 
 # Configure directories
-export build_dir=$1
+build_dir=$1
 cache_dir=$2
 env_dir=$3
-export bp_dir=$(cd $(dirname $0); cd ..; pwd)
-echo "build tools folder ${bp_dir}"
+bp_dir=$(cd $(dirname $0); cd ..; pwd)
 heroku_dir=$build_dir/.heroku
 mkdir -p $heroku_dir/node
 
 # Load some convenience functions like status(), echo(), and indent()
-ls -halt ${bp_dir}/bin
-source ${bp_dir}/bin/common.sh
+source $bp_dir/bin/common.sh
 
 # Avoid GIT_DIR leak from previous build steps
 unset GIT_DIR
