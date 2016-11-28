@@ -8,10 +8,10 @@ set -o pipefail   # don't ignore exit codes when piping output
 # set -x          # enable debugging
 
 # Configure directories
-build_dir=$1
+export build_dir=$1
 cache_dir=$2
 env_dir=$3
-bp_dir=$(cd $(dirname $0); cd ..; pwd)
+export bp_dir=$(cd $(dirname $0); cd ..; pwd)
 heroku_dir=$build_dir/.heroku
 mkdir -p $heroku_dir/node
 
@@ -44,7 +44,7 @@ node_previous=$(file_contents "$cache_dir/node/node-version")
 
 echo $node_engine
 
-exit
+exit -1
 
 # What's the requested semver range for npm?
 npm_engine=$(package_json ".engines.npm")
